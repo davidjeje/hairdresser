@@ -34,11 +34,15 @@ class Service
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="serviceId", *cascade={"persist"})
      */
     private $bookId;
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User",
+     inversedBy="serviceId", cascade={"persist"})
+     * @ORM\JoinColumn(name="customerId", referencedColumnName="id")
      */
     private $customerId;
 

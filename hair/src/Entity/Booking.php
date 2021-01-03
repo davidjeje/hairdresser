@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+ 
 use App\Repository\BookingRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,11 +29,17 @@ class Booking
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User",
+     inversedBy="bookId", cascade={"persist"})
+     * @ORM\JoinColumn(name="customerId", referencedColumnName="id")
      */
     private $customerId;
 
     /**
      * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Service",
+     inversedBy="bookId", cascade={"persist"})
+     * @ORM\JoinColumn(name="serviceId", referencedColumnName="id")
      */
     private $serviceId;
 
