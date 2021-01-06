@@ -45,9 +45,9 @@ class ServiceController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+ 
     /**
-     * @Route("/{id}", name="service_show", methods={"GET"})
+     * @Route("oneService/{id}", name="service_show", methods={"GET"})
      */
     public function show(Service $service): Response
     {

@@ -41,6 +41,18 @@ class Service
      */
     private $bookingId;
 
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\Image(
+     *     minWidth = 400,
+     *     maxWidth = 500,
+     *     minHeight = 300,
+     *     maxHeight = 400
+     * )
+     */
+    private $image;
+
     public function __construct()
     {
         $this->booking = new ArrayCollection();
@@ -96,6 +108,17 @@ class Service
         return $this->bookingId;
     }
 
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 
 
 }

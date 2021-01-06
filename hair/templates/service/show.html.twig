@@ -1,42 +1,32 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Service{% endblock %}
-
-{% block body %}
-    <h1>Service</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ service.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ service.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ service.description }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ service.price }}</td>
-            </tr>
-            <tr>
-                <th>BookId</th>
-                <td>{{ service.bookId }}</td>
-            </tr>
-            <tr>
-                <th>CustomerId</th>
-                <td>{{ service.customerId }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('service_index') }}">back to list</a>
-
-    <a href="{{ path('service_edit', {'id': service.id}) }}">edit</a>
-
-    {{ include('service/_delete_form.html.twig') }}
+{% block nav %}
+  <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+    <ul class="site-menu main-menu js-clone-nav ml-auto ">
+      <li><a href="{{ path('service_index') }}" class="nav-link">Accueil</a></li>
+    </ul>
+  </nav>
 {% endblock %}
+{% block body1 %} 
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center">
+            <h3 class="scissors text-center">{{ service.name }}</h3>
+            <p class="mb-5 lead">{{ service.description }}</p>
+          </div>
+        </div>
+        <div class="row hair-style">
+          <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+            <a href="#" class="place">
+              <img src="{{ asset('images/'img_1.jpg) }}" alt="Image placeholder">
+              
+              <h2>Beard Shaving</h2>
+              <span>{{ service.price }} euros.</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %} 
+{% block body2 %} {% endblock %}
+

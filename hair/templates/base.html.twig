@@ -60,16 +60,7 @@
               <span class="d-inline-block d-lg-none"><a href="#" class="text-white site-menu-toggle js-menu-toggle py-5 text-white"><span class="icon-menu h3 text-white"></span></a></span>
 
               {% block nav %}
-              <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
-                <ul class="site-menu main-menu js-clone-nav ml-auto ">
-                  <li><a href="index.html" class="nav-link">Accueil</a></li>
-                  <li><a href="services.html" class="nav-link">Services</a></li>
-                  <li class="active"><a href="barber-shop.html" class="nav-link">Barber Shop</a></li>
-                  <li><a href="about.html" class="nav-link">About</a></li>
-                  <li><a href="blog.html" class="nav-link">Blog</a></li>
-                  <li><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-              </nav>
+              
               {% endblock %}
 
             </div>
@@ -92,7 +83,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
     {% endblock %}
 
@@ -101,8 +92,8 @@
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center">
-            <h3 class="scissors text-center">Pour différent type de cheveux</h3>
-            <p class="mb-5 lead">Vous trouverez ci dessous tous les services que propose notre salon.</p>
+            <h3 class="scissors text-center">{{ service.name }}</h3>
+            <p class="mb-5 lead">{{ service.description }}</p>
           </div>
         </div>
         <div class="row hair-style">
@@ -110,13 +101,13 @@
             <a href="#" class="place">
               <img src="images/img_1.jpg" alt="Image placeholder">
               <h2>Beard Shaving</h2>
-              <span>$50.00 only</span>
+              <span>{{ service.price }} euros.</span>
             </a>
           </div>
         </div>
       </div>
     </div>
-    <!-- END section -->
+    <!-- END section --> 
     {% endblock %}
 
     {% block body2 %}

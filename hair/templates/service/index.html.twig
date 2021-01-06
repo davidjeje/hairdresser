@@ -1,10 +1,17 @@
 {% extends 'base.html.twig' %}
+{% block nav %}
+  <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+    <ul class="site-menu main-menu js-clone-nav ml-auto ">
+      <li><a href="{{ path('service_index') }}" class="nav-link">Accueil</a></li>
+    </ul>
+  </nav>
+{% endblock %}
 {% block body1 %} {% endblock %} 
 {% block body2 %}
   <div class="site-section bg-light">
     <div class="container">
       <div class="row justify-content-center  mb-5">
-        <div class="col-md-7 text-center">
+        <div class="col-md-7 text-center"> 
           <h3 class="scissors text-center">Prestation du salon</h3>
           <p class="mb-5 lead">
           	Vous trouverez ci-dessous tous les services que offre le salon.
@@ -25,7 +32,8 @@
                   <h3>{{service.name}}</h3>
                   <ul>
                     <li class="d-flex"><span>Prix de la prestation</span> <span class="price ml-auto">{{service.price}} euros.</span></li>
-                    <li class="d-flex"><span>Description de la coupe </span> <span class="price ml-auto">Réservation</span></li>
+                    <li class="d-flex"><span><a href="{{ path('service_show', {'id': service.id}) }}">Description de la coupe</a></span> <span class="price ml-auto">Réservation</span></li>
+                    
                   </ul>
                 </div>
               </div>
