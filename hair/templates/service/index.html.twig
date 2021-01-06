@@ -1,43 +1,38 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Service index{% endblock %}
-
-{% block body %}
-    <h1>Service index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>BookId</th>
-                <th>CustomerId</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for service in services %}
-            <tr>
-                <td>{{ service.id }}</td>
-                <td>{{ service.name }}</td>
-                <td>{{ service.description }}</td>
-                <td>{{ service.price }}</td>
-                <td>{{ service.bookId }}</td>
-                <td>{{ service.customerId }}</td>
-                <td>
-                    <a href="{{ path('service_show', {'id': service.id}) }}">show</a>
-                    <a href="{{ path('service_edit', {'id': service.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('service_new') }}">Create new</a>
+{% block body1 %} {% endblock %} 
+{% block body2 %}
+  <div class="site-section bg-light">
+    <div class="container">
+      <div class="row justify-content-center  mb-5">
+        <div class="col-md-7 text-center">
+          <h3 class="scissors text-center">Prestation du salon</h3>
+          <p class="mb-5 lead">
+          	Vous trouverez ci-dessous tous les services que offre le salon.
+          </p>
+          <p class="text-center">
+            <a href="#" class="btn btn-primary custom-prev">Précédent</a>
+            <a href="#" class="btn btn-primary custom-next">Suivant</a>
+          </p>
+        </div>
+      </div>	
+      <div class="row">  	
+        <div class="col-12">
+          <div class="nonloop-block-13 owl-carousel d-flex"> 
+            {% for service in services %}
+            	<div class="item-1 h">
+                <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+                <div class="item-1-contents">
+                  <h3>{{service.name}}</h3>
+                  <ul>
+                    <li class="d-flex"><span>Prix de la prestation</span> <span class="price ml-auto">{{service.price}} euros.</span></li>
+                    <li class="d-flex"><span>Description de la coupe </span> <span class="price ml-auto">Réservation</span></li>
+                  </ul>
+                </div>
+              </div>
+            {% endfor %}
+          </div>   
+        </div>  
+      </div> 
+    </div>
+  </div> 
 {% endblock %}

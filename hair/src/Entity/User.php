@@ -4,12 +4,18 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Booking;
+use App\Entity\Service;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+//use Symfony\Component\Security\Core\User\UserInterface::getSalt;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -31,19 +37,22 @@ class User
     /**
      * @ORM\Column(type="array")
      */
-    private $roles = [];
+    private $roles = []; 
 
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\OneToMany(targetEntity="App\Entity\Service", mappedBy="customerId", *cascade={"persist"})
+     * 
+     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="customerId")
      */
-    private $serviceId;
+    private $bookingId; 
 
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="customerId", *cascade={"persist"})
-     */
-    private $bookId;
+    public function __construct()
+    {
+        $this->booking = new ArrayCollection();
+        
+        // may not be needed, see section on salt below
+        // $this->salt = md5(uniqid('', true));
+    }
+    
 
     public function getId(): ?int
     {
@@ -86,27 +95,83 @@ class User
         return $this;
     }
 
-    public function getServiceId(): ?int
+    /**
+     * @return Collection|Booking[]
+     */
+    public function getBookingId(): Collection
     {
-        return $this->serviceId;
+        return $this->bookingId;
     }
 
-    public function setServiceId(int $serviceId): self
+    public function addBookingId(Booking $bookingId): self
     {
-        $this->serviceId = $serviceId;
+        if (!$this->bookingId->contains($bookingId)) {
+            $this->bookingId[] = $bookingId;
+            $bookingId->setCustomerId($this);
+        }
 
         return $this;
     }
 
-    public function getBookId(): ?int
+    public function removeBookingId(Booking $bookingId): self
     {
-        return $this->bookId;
-    }
-
-    public function setBookId(int $bookId): self
-    {
-        $this->bookId = $bookId;
+        if ($this->bookingId->contains($bookingId)) {
+            $this->bookingId->removeElement($bookingId);
+            // set the owning side to null (unless already changed)
+            if ($bookingId->getCustomerId() === $this) {
+                $bookingId->setCustomerId(null);
+            }
+        }
 
         return $this;
     }
+
+    public function getUsername()
+    {
+        return $this->name;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(
+            array(
+            $this->id,
+            $this->name,
+            $this->password,
+            
+                // see section on salt below
+                // $this->salt,
+            )
+        );
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list(
+                $this->id,
+                $this->name,
+                $this->password,
+
+                // see section on salt below
+                // $this->salt
+                ) = unserialize($serialized);
+    }
+    
 }

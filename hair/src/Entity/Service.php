@@ -4,6 +4,10 @@ namespace App\Entity;
 
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Booking; 
+use App\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=ServiceRepository::class)
@@ -33,18 +37,14 @@ class Service
     private $price;
 
     /**
-     * @ORM\Column(type="integer")
-     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="serviceId", *cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="serviceId")
      */
-    private $bookId;
+    private $bookingId;
 
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\ManyToOne(targetEntity="App\Entity\User",
-     inversedBy="serviceId", cascade={"persist"})
-     * @ORM\JoinColumn(name="customerId", referencedColumnName="id")
-     */
-    private $customerId;
+    public function __construct()
+    {
+        $this->booking = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -87,27 +87,15 @@ class Service
         return $this;
     }
 
-    public function getBookId(): ?int
+
+    /**
+     * @return Collection|Booking[]
+     */
+    public function getBookingId(): Collection
     {
-        return $this->bookId;
+        return $this->bookingId;
     }
 
-    public function setBookId(int $bookId): self
-    {
-        $this->bookId = $bookId;
 
-        return $this;
-    }
 
-    public function getCustomerId(): ?int
-    {
-        return $this->customerId;
-    }
-
-    public function setCustomerId(int $customerId): self
-    {
-        $this->customerId = $customerId;
-
-        return $this;
-    }
 }
