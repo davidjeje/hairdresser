@@ -8,6 +8,8 @@ use App\Entity\Booking;
 use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+ 
 
 /**
  * @ORM\Entity(repositoryClass=ServiceRepository::class)
@@ -45,10 +47,7 @@ class Service
      * @ORM\Column(type="string")
      *
      * @Assert\Image(
-     *     minWidth = 400,
-     *     maxWidth = 500,
-     *     minHeight = 300,
-     *     maxHeight = 400
+     *     
      * )
      */
     private $image;
