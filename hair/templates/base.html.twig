@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
 
-	{% block head %}
+	{% block head %} 
   <head>
     <title>Salon pour Homme &mdash; </title>
     <meta charset="utf-8">
@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans:300,400,700&display=swap" rel="stylesheet">
 
     <link href="{{ asset('css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
-<link href="{{ asset('css/style.css') }}" rel='stylesheet' type='text/css' />
+    <link href="{{ asset('css/style.css') }}" rel='stylesheet' type='text/css' />
 
     <link rel="stylesheet" href="{{ asset('fonts/icomoon/style.css') }}">
 
@@ -84,30 +84,11 @@
           </div>
         </div>
       </div> 
-    </div>
+    </div> 
     {% endblock %}
 
     {% block body1 %}
-    <div class="site-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center">
-            <h3 class="scissors text-center">{{ service.name }}</h3>
-            <p class="mb-5 lead">{{ service.description }}</p>
-          </div>
-        </div>
-        <div class="row hair-style">
-          <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-            <a href="#" class="place">
-              <img src="images/img_1.jpg" alt="Image placeholder">
-              <h2>Beard Shaving</h2>
-              <span>{{ service.price }} euros.</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END section --> 
+    
     {% endblock %}
 
     {% block body2 %}

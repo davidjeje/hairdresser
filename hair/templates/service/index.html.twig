@@ -3,10 +3,13 @@
   <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
     <ul class="site-menu main-menu js-clone-nav ml-auto ">
       <li><a href="{{ path('service_index') }}" class="nav-link">Accueil</a></li>
+      <li><a href="{{ path('service_test') }}" class="nav-link">test</a></li>
     </ul>
   </nav>
 {% endblock %}
-{% block body1 %} {% endblock %} 
+{% block body1 %} 
+    
+{% endblock %}
 {% block body2 %}
   <div class="site-section bg-light">
     <div class="container">
@@ -27,7 +30,7 @@
           <div class="nonloop-block-13 owl-carousel d-flex"> 
             {% for service in services %}
             	<div class="item-1 h">
-                <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+                <a href="{{ path('service_show', {'id': service.id}) }}"><img src="{{ asset('images/'~service.image) }}" alt="Image" class="img-fluid"></a>
                 <div class="item-1-contents">
                   <h3>{{service.name}}</h3>
                   <ul>

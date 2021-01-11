@@ -9,20 +9,21 @@
 {% block body1 %} 
     <div class="site-section">
       <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center">
-            <h3 class="scissors text-center">{{ service.name }}</h3>
-            <p class="mb-5 lead">{{ service.description }}</p>
+        <div class="row">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="img-years">
+              <img src="{{ asset('images/'~service.image) }}" alt="Image" class="img-fluid">
+
+              <div class="year">
+                <span>{{service.price}}€</span>
+              </div>
+            </div>
+
           </div>
-        </div>
-        <div class="row hair-style">
-          <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-            <a href="#" class="place">
-              <img src="{{ asset('images/'img_1.jpg) }}" alt="Image placeholder">
-              
-              <h2>Beard Shaving</h2>
-              <span>{{ service.price }} euros.</span>
-            </a>
+          <div class="col-lg-5 ml-auto pl-lg-5 text-center">
+            <h3 class="scissors text-center">{{service.name}}</h3>
+            <p class="mb-5 lead">{{service.description}}</p>
+            <p><a href="#" class="btn btn-primary">Learn More</a></p>
           </div>
         </div>
       </div>

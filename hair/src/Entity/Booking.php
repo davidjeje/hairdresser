@@ -9,7 +9,7 @@ use App\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-/**
+/** 
  * @ORM\Entity(repositoryClass=BookingRepository::class)
  */
 class Booking
